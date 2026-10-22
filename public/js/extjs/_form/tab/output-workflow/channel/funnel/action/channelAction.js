@@ -83,7 +83,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnelAction.channelAction = 
 
     initializeStore: function () {
 
-        this.store = new Ext.data.Store({
+        this.store = Ext.create('Ext.data.Store', {
             autoLoad: false,
             fields: ['channelName', 'label'],
             data: [],

@@ -78,7 +78,7 @@ Formbuilder.extjs.conditionalLogic.action.toggleAvailability = Class.create(Form
                     }
                 }
             ],
-            compositeField = new Ext.form.FieldContainer({
+            compositeField = Ext.create('Ext.form.FieldContainer', {
                 layout: 'hbox',
                 hideLabel: true,
                 style: 'padding-bottom:5px;',
@@ -86,7 +86,7 @@ Formbuilder.extjs.conditionalLogic.action.toggleAvailability = Class.create(Form
             }),
             fieldId = Ext.id();
 
-        return new Ext.form.FormPanel({
+        return Ext.create('Ext.form.Panel', {
             id: fieldId,
             type: 'combo',
             forceLayout: true,

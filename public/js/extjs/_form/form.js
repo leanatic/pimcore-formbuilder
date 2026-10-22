@@ -47,7 +47,7 @@ Formbuilder.extjs.rootForm = Class.create({
         this.formConfiguration = new Formbuilder.extjs.formPanel.config(this.formData, this.parentPanel);
         this.formOutputWorkflow = new Formbuilder.extjs.formPanel.outputWorkflowPanel(this.formData, this.parentPanel);
 
-        this.panel = new Ext.TabPanel({
+        this.panel = Ext.create('Ext.tab.Panel', {
             title: this.formName + ' (ID: ' + this.formId + ')',
             closable: true,
             cls: 'form-builder-form-panel',

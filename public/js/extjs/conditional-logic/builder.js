@@ -19,7 +19,7 @@ Formbuilder.extjs.conditionalLogic.builder = Class.create({
         this.conditionalData = typeof conditionalData.cl === 'object' ? conditionalData.cl : conditionalData;
         this.conditionalStore = conditionalStore;
 
-        this.panel = new Ext.form.FieldSet({
+        this.panel = Ext.create('Ext.form.FieldSet', {
             title: t('form_builder_conditional_logic'),
             cls: 'form-builder-conditional-logic-field-set',
             collapsible: false,
@@ -58,7 +58,7 @@ Formbuilder.extjs.conditionalLogic.builder = Class.create({
 
         var clFieldClass = new Formbuilder.extjs.conditionalLogic.form(data, this.sectionId, this.conditionalStore, this.formBuilder),
             layout = clFieldClass.getLayout(),
-            conditionFieldSet = new Ext.form.FieldSet({
+            conditionFieldSet = Ext.create('Ext.form.FieldSet', {
                 hideLabel: false,
                 cls: 'form_builder_conditional_section',
                 title: t('form_builder_conditional_section'),

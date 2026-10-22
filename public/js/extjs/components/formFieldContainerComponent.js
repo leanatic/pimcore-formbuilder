@@ -79,7 +79,7 @@ Formbuilder.extjs.components.formFieldContainer = Class.create({
     renderLayout: function () {
 
         var items = [],
-            item = new Ext.Panel({
+            item = Ext.create('Ext.panel.Panel', {
                 title: t('form_builder_base'),
                 closable: false,
                 autoScroll: true,
@@ -91,7 +91,7 @@ Formbuilder.extjs.components.formFieldContainer = Class.create({
 
         items.push(item);
 
-        this.form = new Ext.form.Panel({
+        this.form = Ext.create('Ext.form.Panel', {
             items: {
                 xtype: 'tabpanel',
                 tabPosition: 'top',
@@ -133,7 +133,7 @@ Formbuilder.extjs.components.formFieldContainer = Class.create({
     },
 
     getTemplateStore: function () {
-        return new Ext.data.Store({
+        return Ext.create('Ext.data.Store', {
             data: this.containerTemplates
         });
     },
@@ -143,7 +143,7 @@ Formbuilder.extjs.components.formFieldContainer = Class.create({
         var _ = this,
             configFieldCounter = 0,
             defaultTemplate = undefined,
-            form = new Ext.form.Panel({
+            form = Ext.create('Ext.form.Panel', {
                 bodyStyle: 'padding: 10px;',
                 labelWidth: 150,
                 defaultType: 'textfield'
@@ -204,7 +204,7 @@ Formbuilder.extjs.components.formFieldContainer = Class.create({
             var field;
             switch (configElement.type) {
                 case 'string':
-                    field = new Ext.form.TextField({
+                    field = Ext.create('Ext.form.field.Text', {
                         fieldLabel: configElement.label,
                         name: 'configuration.' + configElement.name,
                         value: this.getFieldValue(configElement.name),
@@ -213,7 +213,7 @@ Formbuilder.extjs.components.formFieldContainer = Class.create({
                     });
                     break;
                 case 'boolean':
-                    field = new Ext.form.Checkbox({
+                    field = Ext.create('Ext.form.field.Checkbox', {
                         fieldLabel: configElement.label,
                         name: 'configuration.' + configElement.name,
                         value: this.getFieldValue(configElement.name),
@@ -224,7 +224,7 @@ Formbuilder.extjs.components.formFieldContainer = Class.create({
                     });
                     break;
                 case 'integer':
-                    field = new Ext.form.field.Number({
+                    field = Ext.create('Ext.form.field.Number', {
                         fieldLabel: configElement.label,
                         name: 'configuration.' + configElement.name,
                         value: this.getFieldValue(configElement.name),

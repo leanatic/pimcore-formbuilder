@@ -20,7 +20,7 @@ Formbuilder.extjs.conditionalLogic.form = Class.create({
             this.sectionData = sectionData;
         }
 
-        this.panel = new Ext.form.FieldContainer({
+        this.panel = Ext.create('Ext.form.FieldContainer', {
             width: '100%',
             cls: 'form_builder_conditional_section_container',
             style: 'margin-top: 10px; border: 1px solid #565d56;',
@@ -35,7 +35,7 @@ Formbuilder.extjs.conditionalLogic.form = Class.create({
 
     getLayout: function () {
 
-        this.tabPanel = new Ext.TabPanel({
+        this.tabPanel = Ext.create('Ext.tab.Panel', {
             title: false,
             closable: false,
             deferredRender: false,
@@ -64,7 +64,7 @@ Formbuilder.extjs.conditionalLogic.form = Class.create({
             });
         });
 
-        this.conditionsContainer = new Ext.Panel({
+        this.conditionsContainer = Ext.create('Ext.panel.Panel', {
             title: t('conditions'),
             autoScroll: true,
             forceLayout: true,
@@ -91,7 +91,7 @@ Formbuilder.extjs.conditionalLogic.form = Class.create({
             });
         });
 
-        this.actionsContainer = new Ext.Panel({
+        this.actionsContainer = Ext.create('Ext.panel.Panel', {
             title: t('actions'),
             autoScroll: true,
             forceLayout: true,

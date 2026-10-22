@@ -67,7 +67,7 @@ Formbuilder.extjs.extensions.formApiMappingEditor = Class.create({
             return this.detailWindow;
         }
 
-        this.detailWindow = new Ext.Window({
+        this.detailWindow = Ext.create('Ext.window.Window', {
             width: 800,
             height: 768,
             iconCls: 'form_builder_output_workflow_channel_api_mapper',

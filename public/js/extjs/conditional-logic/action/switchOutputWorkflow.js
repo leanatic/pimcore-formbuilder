@@ -34,7 +34,7 @@ Formbuilder.extjs.conditionalLogic.action.switchOutputWorkflow = Class.create(Fo
                     editable: false,
                     triggerAction: 'all',
                     value: null,
-                    store: new Ext.data.Store({
+                    store: Ext.create('Ext.data.Store', {
                         autoLoad: false,
                         proxy: {
                             type: 'ajax',
@@ -62,7 +62,7 @@ Formbuilder.extjs.conditionalLogic.action.switchOutputWorkflow = Class.create(Fo
                 }
             ];
 
-        this.fieldPanel = new Ext.form.FormPanel({
+        this.fieldPanel = Ext.create('Ext.form.Panel', {
             id: fieldId,
             forceLayout: true,
             style: 'margin: 10px 0 0 0',

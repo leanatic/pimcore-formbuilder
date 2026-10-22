@@ -5,7 +5,7 @@ Formbuilder.extjs.form.fields.select = Class.create(Formbuilder.extjs.form.field
         var selectStore;
 
         if (fieldConfig.config.store_url) {
-            selectStore = new Ext.data.JsonStore({
+            selectStore = Ext.create('Ext.data.JsonStore', {
                 autoLoad: true,
                 fields: ['label', 'value'],
                 proxy: {
@@ -17,13 +17,13 @@ Formbuilder.extjs.form.fields.select = Class.create(Formbuilder.extjs.form.field
                 }
             });
         } else {
-            selectStore = new Ext.data.ArrayStore({
+            selectStore = Ext.create('Ext.data.ArrayStore', {
                 fields: ['label', 'value'],
                 data: fieldConfig.config.options
             });
         }
 
-        return new Ext.form.ComboBox({
+        return Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: fieldConfig.label,
             name: fieldConfig.id,
             value: value,

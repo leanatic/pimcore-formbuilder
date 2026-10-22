@@ -87,14 +87,14 @@ Formbuilder.extjs.formPanel.config = Class.create({
             }
         });
 
-        this.editPanel = new Ext.Panel({
+        this.editPanel = Ext.create('Ext.panel.Panel', {
             region: 'center',
             bodyStyle: 'padding: 10px;',
             cls: 'form-builder-form-configuration-panel',
             autoScroll: true
         });
 
-        this.panel = new Ext.Panel({
+        this.panel = Ext.create('Ext.panel.Panel', {
             title: t('form_builder.tab.form_configuration'),
             closable: false,
             iconCls: 'form_builder_icon_form_configuration',
@@ -282,7 +282,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
             parentType = record.data.fbType,
             deleteAllowed,
             showPaste = false,
-            menu = new Ext.menu.Menu(),
+            menu = Ext.create('Ext.menu.Menu'),
             layoutElem = [];
 
         menu.on('hide', function (menu) {
@@ -321,7 +321,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
                     });
                 }.bind(this));
 
-                layoutElem.push(new Ext.menu.Item({
+                layoutElem.push(Ext.create('Ext.menu.Item', {
                     text: formGroup.label,
                     iconCls: formGroup.icon_class,
                     hideOnClick: false,
@@ -330,7 +330,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
 
             }.bind(this));
 
-            menu.add(new Ext.menu.Item({
+            menu.add(Ext.create('Ext.menu.Item', {
                 text: t('form_builder_add_form_item'),
                 iconCls: 'form_builder_icon_item_add',
                 hideOnClick: false,
@@ -345,7 +345,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
             var constraintElements = [];
             Ext.each(record.data.object.allowedConstraints, function (constraintId) {
                 var constraint = _.getFormTypeConstraintStructure(constraintId);
-                constraintElements.push(new Ext.menu.Item({
+                constraintElements.push(Ext.create('Ext.menu.Item', {
                     text: constraint.label,
                     iconCls: constraint.icon_class,
                     hideOnClick: true,
@@ -353,7 +353,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
                 }));
             });
 
-            menu.add(new Ext.menu.Item({
+            menu.add(Ext.create('Ext.menu.Item', {
                 text: t('form_builder_add_validation'),
                 iconCls: 'form_builder_icon_validation_add',
                 hideOnClick: false,
@@ -366,7 +366,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
 
             var containerElements = [];
             Ext.Array.each(this.availableContainerTypes, function (container) {
-                containerElements.push(new Ext.menu.Item({
+                containerElements.push(Ext.create('Ext.menu.Item', {
                     text: container.label,
                     iconCls: container.icon_class,
                     hideOnClick: true,
@@ -374,7 +374,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
                 }));
             });
 
-            menu.add(new Ext.menu.Item({
+            menu.add(Ext.create('Ext.menu.Item', {
                 text: t('form_builder_add_container_type'),
                 iconCls: 'form_builder_icon_container_type_add',
                 hideOnClick: false,
@@ -385,7 +385,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
 
         // copy menu
         if (parentType !== 'root') {
-            menu.add(new Ext.menu.Item({
+            menu.add(Ext.create('Ext.menu.Item', {
                 text: t('copy'),
                 iconCls: "pimcore_icon_copy",
                 hideOnClick: true,
@@ -407,7 +407,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
                 showPaste = true;
             }
             if (showPaste) {
-                menu.add(new Ext.menu.Item({
+                menu.add(Ext.create('Ext.menu.Item', {
                     text: t('paste'),
                     iconCls: "pimcore_icon_paste",
                     hideOnClick: true,
@@ -418,7 +418,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
 
         // delete menu
         if (deleteAllowed) {
-            menu.add(new Ext.menu.Item({
+            menu.add(Ext.create('Ext.menu.Item', {
                 text: t('delete'),
                 iconCls: 'pimcore_icon_delete',
                 handler: this.removeFormField.bind(this, tree, record)
@@ -643,11 +643,11 @@ Formbuilder.extjs.formPanel.config = Class.create({
     getRootPanel: function () {
 
         var doubleOptInLocalizedField,
-            methodStore = new Ext.data.ArrayStore({
+            methodStore = Ext.create('Ext.data.ArrayStore', {
                 fields: ['value', 'label'],
                 data: [['post', 'POST'], ['get', 'GET']]
             }),
-            encStore = new Ext.data.ArrayStore({
+            encStore = Ext.create('Ext.data.ArrayStore', {
                 fields: ['value', 'label'],
                 data: [
                     ['text/plain', 'text/plain'],
@@ -655,7 +655,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
                     ['multipart/form-data', 'multipart/form-data']
                 ]
             }),
-            owStore = new Ext.data.Store({
+            owStore = Ext.create('Ext.data.Store', {
                 autoLoad: false,
                 proxy: {
                     type: 'ajax',
@@ -708,7 +708,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
 
             }.bind(this), true);
 
-            this.doubleOptInPanel = new Ext.form.FieldSet({
+            this.doubleOptInPanel = Ext.create('Ext.form.FieldSet', {
                 title: t('form_builder_form.double_opt_in'),
                 collapsible: false,
                 autoHeight: true,
@@ -796,7 +796,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
         this.clBuilder = clBuilder.getLayout();
 
         // add export panel
-        this.exportPanel = new Ext.form.FieldSet({
+        this.exportPanel = Ext.create('Ext.form.FieldSet', {
             title: t('form_builder_email_csv_export'),
             collapsible: false,
             autoHeight: true,
@@ -833,7 +833,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
                 }]
         });
 
-        this.rootPanel = new Ext.form.FormPanel({
+        this.rootPanel = Ext.create('Ext.form.Panel', {
             bodyStyle: 'padding: 10px',
             border: false,
             tbar: this.getRootPanelToolbar(),
@@ -919,7 +919,7 @@ Formbuilder.extjs.formPanel.config = Class.create({
 
     getRootPanelToolbar: function () {
 
-        var toolbar = new Ext.Toolbar(),
+        var toolbar = Ext.create('Ext.toolbar.Toolbar'),
             items = [];
 
         items.push({

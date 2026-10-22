@@ -44,7 +44,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorConfigurator.formObjectTreeM
         var intervalCounter = 0,
             intervalInstance;
 
-        this.editPanel = new Ext.Panel({
+        this.editPanel = Ext.create('Ext.panel.Panel', {
             layout: 'border',
             autoScroll: true,
             border: false
@@ -211,7 +211,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorConfigurator.formObjectTreeM
 
         treeItems = generateFields(this.formFieldDefinitions, []);
 
-        this.formTreePanel = new Ext.tree.TreePanel({
+        this.formTreePanel = Ext.create('Ext.tree.Panel', {
             region: 'center',
             title: this.pimcoreClassType === 'object' ? 'Form Data' : 'Form Container Data',
             layout: 'fit',
@@ -375,7 +375,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorConfigurator.formObjectTreeM
 
     onTreeNodeContextmenu: function (tree, record, item, index, ev) {
 
-        var menu = new Ext.menu.Menu();
+        var menu = Ext.create('Ext.menu.Menu');
 
         ev.stopEvent();
         tree.select();
@@ -388,7 +388,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorConfigurator.formObjectTreeM
             return;
         }
 
-        menu.add(new Ext.menu.Item({
+        menu.add(Ext.create('Ext.menu.Item', {
             text: t('delete'),
             iconCls: 'pimcore_icon_delete',
             handler: function (record) {
@@ -409,7 +409,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorConfigurator.formObjectTreeM
             this.classTreePanel = this.getClassTree(classFetchUrl, this.pimcoreClassId, 0);
         }
 
-        this.classDefinitionTreePanel = new Ext.Panel({
+        this.classDefinitionTreePanel = Ext.create('Ext.panel.Panel', {
             layout: 'fit',
             region: 'east',
             width: this.pimcoreClassType === 'object' ? 600 : 400,

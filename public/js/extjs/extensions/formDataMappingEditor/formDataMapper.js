@@ -25,7 +25,7 @@ Formbuilder.extjs.extensions.formDataMappingEditor.formDataMapper = Class.create
 
     getLayout: function () {
 
-        this.editPanel = new Ext.Panel({
+        this.editPanel = Ext.create('Ext.panel.Panel', {
             layout: 'form',
             region: 'north',
             autoScroll: true,
@@ -62,11 +62,11 @@ Formbuilder.extjs.extensions.formDataMappingEditor.formDataMapper = Class.create
         var treeItems,
             hasPredefinedApiFields = this.apiProviderData.predefinedApiFields.length > 0,
             predefinedApiFields = this.apiProviderData.predefinedApiFields,
-            predefinedApiFieldStore = new Ext.data.Store({
+            predefinedApiFieldStore = Ext.create('Ext.data.Store', {
                 fields: ['label', 'value'],
                 data: predefinedApiFields === null ? [] : predefinedApiFields,
             }),
-            fieldTransformerStore = new Ext.data.Store({
+            fieldTransformerStore = Ext.create('Ext.data.Store', {
                 fields: ['label', 'value', 'description'],
                 data: this.fieldTransformer,
                 listeners: {
@@ -76,12 +76,12 @@ Formbuilder.extjs.extensions.formDataMappingEditor.formDataMapper = Class.create
                             return;
                         }
 
-                        store.insert(0, new Ext.data.Record({label: 'None', value: null, description: null}));
+                        store.insert(0, Ext.create('Ext.data.Model', {label: 'None', value: null, description: null}));
 
                     }
                 }
             }),
-            storeCollection = new Ext.util.Collection(),
+            storeCollection = Ext.create('Ext.util.Collection'),
             generateFields = function (fields, treeItems, parent) {
 
                 Ext.Array.each(fields, function (field) {
@@ -135,7 +135,7 @@ Formbuilder.extjs.extensions.formDataMappingEditor.formDataMapper = Class.create
 
         treeItems = generateFields(this.formFieldDefinitions, [], null);
 
-        this.formTreePanel = new Ext.tree.TreePanel({
+        this.formTreePanel = Ext.create('Ext.tree.Panel', {
             region: 'center',
             title: false,
             layout: 'fit',
@@ -197,7 +197,7 @@ Formbuilder.extjs.extensions.formDataMappingEditor.formDataMapper = Class.create
                             return false;
                         }
 
-                        editor = new Ext.form.field.Tag({
+                        editor = Ext.create('Ext.form.field.Tag', {
                             queryDelay: 0,
                             displayField: 'label',
                             valueField: 'value',

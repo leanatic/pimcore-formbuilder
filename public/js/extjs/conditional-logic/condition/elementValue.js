@@ -36,7 +36,7 @@ Formbuilder.extjs.conditionalLogic.condition.elementValue = Class.create(Formbui
                 fields: ['name', 'display_name'],
                 data: this.panel.getFormFields()
             }),
-            descriptionField = new Ext.form.Label({
+            descriptionField = Ext.create('Ext.form.Label', {
                 hidden: true,
                 anchor: '100%',
                 flex: 1,
@@ -45,7 +45,7 @@ Formbuilder.extjs.conditionalLogic.condition.elementValue = Class.create(Formbui
             allowValueFieldEmpty = this.data && (
                 this.data.comparator === 'is_checked' || this.data.comparator === 'is_not_checked' || this.data.comparator === 'is_empty_value'
             ),
-            valueField = new Ext.form.TextField({
+            valueField = Ext.create('Ext.form.field.Text', {
                 name: _.generateFieldName(this.sectionId, this.index, 'value'),
                 fieldLabel: t('form_builder_element_value_value'),
                 anchor: '100%',
@@ -142,7 +142,7 @@ Formbuilder.extjs.conditionalLogic.condition.elementValue = Class.create(Formbui
                 },
                 valueField
             ],
-            compositeField = new Ext.form.FieldContainer({
+            compositeField = Ext.create('Ext.form.FieldContainer', {
                 layout: 'hbox',
                 hideLabel: true,
                 style: 'padding-bottom:5px;',
@@ -150,7 +150,7 @@ Formbuilder.extjs.conditionalLogic.condition.elementValue = Class.create(Formbui
             }),
             fieldId = Ext.id();
 
-        return new Ext.form.FormPanel({
+        return Ext.create('Ext.form.Panel', {
             id: fieldId,
             type: 'combo',
             forceLayout: true,

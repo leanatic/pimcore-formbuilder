@@ -65,7 +65,7 @@ Formbuilder.extjs.components.formTypeBuilder = Class.create({
 
         var items = [];
         Ext.Array.each(this.configurationLayout, function (tabLayout, i) {
-            items.push(new Ext.Panel({
+            items.push(Ext.create('Ext.panel.Panel', {
                 title: tabLayout.label,
                 closable: false,
                 autoScroll: true,
@@ -75,7 +75,7 @@ Formbuilder.extjs.components.formTypeBuilder = Class.create({
             }));
         }.bind(this));
 
-        this.form = new Ext.form.Panel({
+        this.form = Ext.create('Ext.form.Panel', {
             items: {
                 xtype: 'tabpanel',
                 tabPosition: 'top',
@@ -120,7 +120,7 @@ Formbuilder.extjs.components.formTypeBuilder = Class.create({
             var fieldSetFields = [],
                 fieldConfig,
                 field,
-                fieldSet = new Ext.form.FieldSet({
+                fieldSet = Ext.create('Ext.form.FieldSet', {
                     title: fieldSetConfig.label,
                     collapsible: true,
                     collapsed: fieldSetConfig.collapsed,
@@ -149,7 +149,7 @@ Formbuilder.extjs.components.formTypeBuilder = Class.create({
     createBaseForm: function (isMainTab) {
 
         var _ = this,
-            form = new Ext.form.Panel({
+            form = Ext.create('Ext.form.Panel', {
                 bodyStyle: 'padding: 10px;',
                 labelWidth: 150,
                 defaultType: 'textfield',
@@ -259,7 +259,7 @@ Formbuilder.extjs.components.formTypeBuilder = Class.create({
                 displayField: 'label',
                 valueField: 'value',
                 mode: 'local',
-                store: new Ext.data.Store({
+                store: Ext.create('Ext.data.Store', {
                     data: this.formTypeTemplates
                 }),
                 editable: false,

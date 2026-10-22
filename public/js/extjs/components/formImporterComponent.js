@@ -16,7 +16,7 @@ Formbuilder.extjs.components.formImporter = Class.create({
         var uploadForm,
             requestParams = {};
 
-        this.uploadWindow = new Ext.Window({
+        this.uploadWindow = Ext.create('Ext.window.Window', {
             autoHeight: true,
             title: t('upload'),
             closeAction: 'close',
@@ -31,7 +31,7 @@ Formbuilder.extjs.components.formImporter = Class.create({
             };
         }
 
-        uploadForm = new Ext.form.FormPanel({
+        uploadForm = Ext.create('Ext.form.Panel', {
             bodyStyle: 'padding:10px',
             border: false,
             fileUpload: true,

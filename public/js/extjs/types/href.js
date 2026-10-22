@@ -56,7 +56,7 @@ Formbuilder.extjs.types.href = Class.create({
 
         this.href.on('render', function (el) {
 
-            new Ext.dd.DropZone(el.getEl(), {
+            Ext.create('Ext.dd.DropZone', el.getEl(), {
                 reference: this,
                 ddGroup: 'element',
                 getTargetFromEvent: function (e) {
@@ -193,10 +193,10 @@ Formbuilder.extjs.types.href = Class.create({
 
     onContextMenu: function (e) {
 
-        var menu = new Ext.menu.Menu();
+        var menu = Ext.create('Ext.menu.Menu');
 
         if (this.data.id) {
-            menu.add(new Ext.menu.Item({
+            menu.add(Ext.create('Ext.menu.Item', {
                 text: t('empty'),
                 iconCls: 'pimcore_icon_delete',
                 handler: function (item) {
@@ -206,7 +206,7 @@ Formbuilder.extjs.types.href = Class.create({
                 }.bind(this)
             }));
 
-            menu.add(new Ext.menu.Item({
+            menu.add(Ext.create('Ext.menu.Item', {
                 text: t('open'),
                 iconCls: 'pimcore_icon_open',
                 handler: function (item) {
@@ -222,7 +222,7 @@ Formbuilder.extjs.types.href = Class.create({
             }));
 
             if (pimcore.elementservice.showLocateInTreeButton('document')) {
-                menu.add(new Ext.menu.Item({
+                menu.add(Ext.create('Ext.menu.Item', {
                     text: t('show_in_tree'),
                     iconCls: 'pimcore_icon_show_in_tree',
                     handler: function (item) {

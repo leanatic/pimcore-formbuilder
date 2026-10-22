@@ -27,7 +27,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
             }
         }
 
-        this.panel = new Ext.form.FormPanel({
+        this.panel = Ext.create('Ext.form.Panel', {
             title: false,
             border: false,
             defaults: {},
@@ -51,7 +51,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
             valueField: 'value',
             mode: 'local',
             labelAlign: 'left',
-            store: new Ext.data.ArrayStore({
+            store: Ext.create('Ext.data.ArrayStore', {
                 fields: ['value', 'key'],
                 data: [
                     ['newObject', t('form_builder.output_workflow.output_workflow_channel.object.resolve_with_new_object')],
@@ -85,7 +85,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
             this.panel.remove(this.objectResolverPanel);
         }
 
-        this.objectResolverPanel = new Ext.form.FieldSet({
+        this.objectResolverPanel = Ext.create('Ext.form.FieldSet', {
             title: resolveStrategy === 'newObject'
                 ? t('form_builder.output_workflow.output_workflow_channel.object.resolve_with_new_object')
                 : t('form_builder.output_workflow.output_workflow_channel.object.resolve_with_existing_object'),
@@ -98,7 +98,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
             defaultType: 'textfield'
         });
 
-        dynamicObjectResolverPanel = new Ext.Panel({
+        dynamicObjectResolverPanel = Ext.create('Ext.panel.Panel', {
             defaults: {
                 labelWidth: 200
             },
@@ -264,7 +264,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
         var hasData = this.objectMappingData !== null,
             hasInconsistentData = this.objectMappingDataIsConsistent === false;
 
-        return new Ext.Panel({
+        return Ext.create('Ext.panel.Panel', {
             layout: 'hbox',
             anchor: '100%',
             hidden: true,
@@ -401,7 +401,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
         var combo,
             firstTimeLoad = true;
 
-        combo = new Ext.form.ComboBox({
+        combo = Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: t('form_builder.output_workflow.output_workflow_channel.object.choose_resolving_object_class'),
             name: name,
             width: 400,
@@ -428,7 +428,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
                     combo.getStore().load();
                 }.bind(this),
             },
-            store: new Ext.data.Store({
+            store: Ext.create('Ext.data.Store', {
                 autoLoad: false,
                 autoDestroy: true,
                 proxy: {
@@ -462,7 +462,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
         var combo,
             firstTimeLoad = true;
 
-        combo = new Ext.form.ComboBox({
+        combo = Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: t('form_builder.output_workflow.output_workflow_channel.object.dynamic_object_resolver'),
             name: name,
             width: 400,
@@ -489,7 +489,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.object = Class.create(Formbui
                     combo.getStore().load();
                 }.bind(this),
             },
-            store: new Ext.data.Store({
+            store: Ext.create('Ext.data.Store', {
                 autoLoad: false,
                 autoDestroy: true,
                 proxy: {

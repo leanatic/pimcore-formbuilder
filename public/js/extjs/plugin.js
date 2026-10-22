@@ -18,7 +18,7 @@ document.addEventListener(pimcore.events.pimcoreReady, (e) => {
         success: function (response) {
 
             var config = Ext.decode(response.responseText),
-                formBuilderMenu = new Ext.Action({
+                formBuilderMenu = Ext.create('Ext.Action', {
                     id: 'form_builder_setting_button',
                     text: t('form_builder_settings'),
                     iconCls: 'form_builder_icon_fbuilder',

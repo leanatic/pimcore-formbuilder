@@ -47,7 +47,7 @@ Formbuilder.extjs.components.successMessageToggleComponent = Class.create({
                     valueField: 'value',
                     mode: 'local',
                     labelAlign: 'top',
-                    store: new Ext.data.ArrayStore({
+                    store: Ext.create('Ext.data.ArrayStore', {
                         fields: ['value', 'key'],
                         data: [
                             ['string', t('form_builder_success_message_identifier_string')],
@@ -74,14 +74,14 @@ Formbuilder.extjs.components.successMessageToggleComponent = Class.create({
                     }
                 }
             ],
-            compositeField = new Ext.form.FieldContainer({
+            compositeField = Ext.create('Ext.form.FieldContainer', {
                 layout: 'hbox',
                 hideLabel: true,
                 style: 'padding-bottom:5px;',
                 items: items
             });
 
-        this.fieldPanel = new Ext.form.FormPanel({
+        this.fieldPanel = Ext.create('Ext.form.Panel', {
             id: this.fieldId,
             forceLayout: true,
             style: 'margin: 10px 0 0 0',
@@ -121,7 +121,7 @@ Formbuilder.extjs.components.successMessageToggleComponent = Class.create({
 
         var _ = this;
 
-        return new Ext.form.TextField({
+        return Ext.create('Ext.form.field.Text', {
             name: this.componentConfiguration.onGenerateFieldName('value'),
             fieldLabel: t('form_builder_success_message_text'),
             anchor: '100%',
@@ -205,7 +205,7 @@ Formbuilder.extjs.components.successMessageToggleComponent = Class.create({
             _.componentConfiguration.onGenerateFieldName('localizedValueField', args, this);
         });
 
-        flashMessageField = new Ext.form.TextField({
+        flashMessageField = Ext.create('Ext.form.field.Text', {
             name: _.componentConfiguration.onGenerateFieldName('flashMessage'),
             fieldLabel: t('form_builder_success_message_flash_message_text'),
             anchor: '100%',
@@ -223,7 +223,7 @@ Formbuilder.extjs.components.successMessageToggleComponent = Class.create({
             }
         });
 
-        valueField = new Ext.form.FormPanel({
+        valueField = Ext.create('Ext.form.Panel', {
             forceLayout: true,
             style: '',
             bodyStyle: '',
@@ -235,7 +235,7 @@ Formbuilder.extjs.components.successMessageToggleComponent = Class.create({
 
     generateExternalRedirectValueField: function () {
         var _ = this;
-        return new Ext.form.TextField({
+        return Ext.create('Ext.form.field.Text', {
             name: this.componentConfiguration.onGenerateFieldName('value'),
             fieldLabel: t('form_builder_success_message_external_url'),
             anchor: '100%',

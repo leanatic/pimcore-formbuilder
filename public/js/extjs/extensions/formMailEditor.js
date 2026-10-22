@@ -77,7 +77,7 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
             return this.detailWindow;
         }
 
-        this.detailWindow = new Ext.Window({
+        this.detailWindow = Ext.create('Ext.window.Window', {
             width: 1200,
             height: 768,
             iconCls: 'pimcore_icon_mail_editor',
@@ -117,7 +117,7 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
         var rightHtml = '' +
             '<div class="mail-editor-selection" id="' + this.selectionId + '"></div>';
 
-        this.editPanel = new Ext.Panel({
+        this.editPanel = Ext.create('Ext.panel.Panel', {
             closable: false,
             bodyStyle: 'position:relative;',
             border: false,
@@ -125,7 +125,7 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
             autoScroll: false
         });
 
-        this.leftPanel = new Ext.Panel({
+        this.leftPanel = Ext.create('Ext.panel.Panel', {
             closable: false,
             border: false,
             title: 'Editor' + ' (' + t('form_builder.mail_editor.mail_type_slug') + ': ' + t('form_builder.mail_editor.mail_type_' + this.mailType) + ')',
@@ -135,14 +135,14 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
             autoScroll: false
         });
 
-        this.leftInnerPannel = new Ext.Panel({
+        this.leftInnerPannel = Ext.create('Ext.panel.Panel', {
             closable: false,
             border: false,
             title: false,
             autoScroll: true,
         });
 
-        this.preFillButton = new Ext.Button({
+        this.preFillButton = Ext.create('Ext.button.Button', {
             text: 'Prefill',
             anchor: '100%',
             style: 'margin: 5px 20px; width: 85%;',
@@ -160,7 +160,7 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
             }.bind(this)
         });
 
-        this.rightPanel = new Ext.Panel({
+        this.rightPanel = Ext.create('Ext.panel.Panel', {
             closable: false,
             html: rightHtml,
             items: [
@@ -180,7 +180,7 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
 
         this.rightPanel.on('afterrender', this.initSelectionFields.bind(this));
 
-        var mailTypeSelector = new Ext.form.ComboBox({
+        var mailTypeSelector = Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: t('type'),
             value: 'html',
             displayField: 'label',
@@ -195,7 +195,7 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
             allowBlank: false,
             name: 'mailType',
             style: 'margin: 5px 0; padding: 0 10px;',
-            store: new Ext.data.ArrayStore({
+            store: Ext.create('Ext.data.ArrayStore', {
                 fields: ['value', 'label'],
                 data: [['html', 'HTML'], ['text', 'TEXT']]
             }),
@@ -251,7 +251,7 @@ Formbuilder.extjs.extensions.formMailEditor = Class.create({
             });
         }.bind(this));
 
-        editorField = new Ext.form.FieldSet({
+        editorField = Ext.create('Ext.form.FieldSet', {
             cls: 'form_builder_mail_editor_localized_field',
             layout: 'anchor',
             hideLabel: false,

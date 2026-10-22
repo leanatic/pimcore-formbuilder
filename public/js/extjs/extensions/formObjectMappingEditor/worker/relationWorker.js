@@ -37,7 +37,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.relationWorker = Clas
 
         this.node = node;
 
-        var comboBox = new Ext.form.ComboBox({
+        var comboBox = Ext.create('Ext.form.field.ComboBox', {
                 fieldLabel: t('form_builder.output_workflow.output_workflow_channel.object.fc_worker_relation'),
                 displayField: 'label',
                 valueField: 'value',
@@ -53,7 +53,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.relationWorker = Clas
                 allowBlank: false,
                 name: 'relationType'
             }),
-            store = new Ext.data.ArrayStore({
+            store = Ext.create('Ext.data.ArrayStore', {
                 fields: ['value', 'label'],
                 data: [
                     ['asset', t('asset')],
@@ -66,7 +66,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.relationWorker = Clas
 
         this.comboBox = comboBox;
 
-        this.window = new Ext.Window({
+        this.window = Ext.create('Ext.window.Window', {
             width: 400,
             height: 200,
             iconCls: 'form_builder_output_workflow_channel_object_mapper',

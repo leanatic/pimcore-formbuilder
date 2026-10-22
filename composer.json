@@ -35,12 +35,15 @@
     },
     "require": {
         "php": "^8.3 || ^8.4 || ^8.5",
-        "pimcore/pimcore": "^2026.3",
-        "pimcore/studio-backend-bundle": "^2026.3",
-        "pimcore/studio-ui-bundle": "^2026.3",
+        "pimcore/pimcore": "^12.3 || ^2026.3",
+        "pimcore/studio-backend-bundle": "^2025.4 || ^2026.3",
+        "pimcore/studio-ui-bundle": "^2025.4 || ^2026.3",
         "symfony/form": "^7.4 || ^8.0",
         "symfony/intl": "^7.4 || ^8.0",
         "doctrine/orm": "^2.7 || ^3.0"
+    },
+    "suggest": {
+        "pimcore/admin-ui-classic-bundle": "Classic admin (ExtJS) form editor on Pimcore 12.3 / Platform 2025.4"
     },
     "require-dev": {
         "codeception/codeception": "^5.0",

@@ -62,13 +62,13 @@ Formbuilder.extjs.conditionalLogic.action.triggerEvent = Class.create(Formbuilde
                     }
                 }
             ],
-            compositeField = new Ext.form.FieldContainer({
+            compositeField = Ext.create('Ext.form.FieldContainer', {
                 layout: 'hbox',
                 hideLabel: true,
                 style: 'padding-bottom:5px;',
                 items: items
             }),
-            descriptionField = new Ext.form.Label({
+            descriptionField = Ext.create('Ext.form.Label', {
                 xtype: 'label',
                 anchor: '100%',
                 style: 'display:block; padding:5px; background:#f5f5f5; border:1px solid #eee; font-weight: 300;',
@@ -76,7 +76,7 @@ Formbuilder.extjs.conditionalLogic.action.triggerEvent = Class.create(Formbuilde
             }),
             fieldId = Ext.id();
 
-        return new Ext.form.FormPanel({
+        return Ext.create('Ext.form.Panel', {
             id: fieldId,
             type: 'combo',
             forceLayout: true,

@@ -57,7 +57,7 @@ Formbuilder.extjs.form.fields.textfield = Class.create(Formbuilder.extjs.form.fi
                 ? additionalFieldValues[injectionFieldName]
                 : null;
 
-            injectionField = new Ext.form.Hidden({
+            injectionField = Ext.create('Ext.form.field.Hidden', {
                 name: injectionFieldName,
                 value: injectionFieldData
             });
@@ -68,14 +68,14 @@ Formbuilder.extjs.form.fields.textfield = Class.create(Formbuilder.extjs.form.fi
                 options.emptyText = t('form_builder_field_data_injector_active');
             }
 
-            textField = new Ext.form.TextField(options);
+            textField = Ext.create('Ext.form.field.Text', options);
 
-            return new Ext.form.FieldContainer({
+            return Ext.create('Ext.form.FieldContainer', {
                 layout: 'hbox',
                 hideLabel: true,
                 items: [
                     textField,
-                    new Ext.Button({
+                    Ext.create('Ext.button.Button', {
                         iconCls: 'form_builder_icon_data_injection',
                         handler: this.handleDataInjectorWindow.bind(this, fieldConfig, injectionField, textField),
                         enableToggle: true
@@ -85,7 +85,7 @@ Formbuilder.extjs.form.fields.textfield = Class.create(Formbuilder.extjs.form.fi
             })
         }
 
-        return new Ext.form.TextField(options);
+        return Ext.create('Ext.form.field.Text', options);
     },
 
     handleTranslatorWindow: function (fieldConfig, textField) {
@@ -125,13 +125,13 @@ Formbuilder.extjs.form.fields.textfield = Class.create(Formbuilder.extjs.form.fi
         var diWindow,
             injectionFieldData = injectionField.getValue(),
             injectionFieldExtractedData = injectionFieldData === null || injectionFieldData === '' ? null : JSON.parse(injectionFieldData),
-            configPanel = new Ext.form.FormPanel({
+            configPanel = Ext.create('Ext.form.Panel', {
                 border: false,
                 hideLabel: true,
                 autoScroll: false
             });
 
-        diWindow = new Ext.Window({
+        diWindow = Ext.create('Ext.window.Window', {
             width: 600,
             height: 400,
             title: 'Data Injector',
@@ -159,7 +159,7 @@ Formbuilder.extjs.form.fields.textfield = Class.create(Formbuilder.extjs.form.fi
                     value: null,
                     editable: false,
                     allowBlank: false,
-                    store: new Ext.data.Store({
+                    store: Ext.create('Ext.data.Store', {
                         proxy: {
                             type: 'ajax',
                             url: '/admin/formbuilder/settings/get-data-injection-store',
@@ -172,7 +172,7 @@ Formbuilder.extjs.form.fields.textfield = Class.create(Formbuilder.extjs.form.fi
                         listeners: {
                             load: function (store, records) {
 
-                                store.insert(0, new Ext.data.Record({
+                                store.insert(0, Ext.create('Ext.data.Model', {
                                     value: null,
                                     label: t('form_builder_field_no_data_injector_available')
                                 }));

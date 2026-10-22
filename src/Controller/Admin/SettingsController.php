@@ -261,7 +261,7 @@ class SettingsController extends AbstractController
 
         $templates = [['key' => null, 'label' => '--']];
 
-        foreach ($areaConfig['group_templates'] as $configName => $element) {
+        foreach ($areaConfig['group_templates'] ?? [] as $configName => $element) {
             $templates[] = ['key' => $configName, 'label' => $element['niceName']];
         }
 

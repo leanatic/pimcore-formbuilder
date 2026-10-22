@@ -16,7 +16,7 @@ declare(strict_types=1);
 namespace FormBuilderBundle\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use Doctrine\DBAL\Types\Type;
 use FormBuilderBundle\Factory\FormDefinitionFactoryInterface;
 use FormBuilderBundle\Model\FieldDefinitionInterface;
@@ -63,8 +63,8 @@ class FormBuilderFieldsType extends Type
 
         $value = is_resource($value) ? stream_get_contents($value) : $value;
 
-        set_error_handler(function (int $code, string $message): bool {
-            throw ConversionException::conversionFailedUnserialization($this->getName(), $message);
+        set_error_handler(static function (int $code, string $message) use ($value): bool {
+            throw ValueNotConvertible::new($value, self::FORM_BUILDER_FIELDS, $message);
         });
 
         try {

@@ -19,7 +19,7 @@ Formbuilder.extjs.extensions.formMetaData = Class.create({
             return this.detailWindow;
         }
 
-        this.detailWindow = new Ext.Window({
+        this.detailWindow = Ext.create('Ext.window.Window', {
             width: 800,
             height: 600,
             iconCls: 'pimcore_icon_info',
@@ -65,7 +65,7 @@ Formbuilder.extjs.extensions.formMetaData = Class.create({
             items.push(this.generateUserField(t('usermodification'), this.data.modified_by));
         }
 
-        requiredByStore = new Ext.data.Store({
+        requiredByStore = Ext.create('Ext.data.Store', {
             pageSize: itemsPerPage,
             proxy: {
                 type: 'ajax',
@@ -82,7 +82,7 @@ Formbuilder.extjs.extensions.formMetaData = Class.create({
             fields: ['id', 'path', 'type', 'subtype']
         });
 
-        requiredByGrid = new Ext.grid.GridPanel({
+        requiredByGrid = Ext.create('Ext.grid.Panel', {
             store: requiredByStore,
             columns: [
                 {text: 'ID', sortable: true, dataIndex: 'id', hidden: false},
@@ -112,7 +112,7 @@ Formbuilder.extjs.extensions.formMetaData = Class.create({
 
         requiredByStore.load();
 
-        requiredByPanel = new Ext.Panel({
+        requiredByPanel = Ext.create('Ext.panel.Panel', {
             title: t('required_by'),
             flex: 1,
             layout: {
@@ -127,7 +127,7 @@ Formbuilder.extjs.extensions.formMetaData = Class.create({
 
         items.push(requiredByPanel);
 
-        this.detailWindow.add(new Ext.form.FormPanel({
+        this.detailWindow.add(Ext.create('Ext.form.Panel', {
             border: false,
             frame: false,
             bodyStyle: 'padding:10px',

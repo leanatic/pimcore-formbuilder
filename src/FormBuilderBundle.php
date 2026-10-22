@@ -30,7 +30,9 @@ use FormBuilderBundle\DependencyInjection\CompilerPass\OutputWorkflowFunnelActio
 use FormBuilderBundle\DependencyInjection\CompilerPass\OutputWorkflowFunnelLayerPass;
 use FormBuilderBundle\DependencyInjection\CompilerPass\RuntimeDataProviderPass;
 use FormBuilderBundle\DependencyInjection\CompilerPass\StorageProviderPass;
+use FormBuilderBundle\Doctrine\Type\FormBuilderArrayType;
 use FormBuilderBundle\Doctrine\Type\FormBuilderFieldsType;
+use FormBuilderBundle\Doctrine\Type\FormBuilderObjectType;
 use FormBuilderBundle\Factory\FormDefinitionFactoryInterface;
 use FormBuilderBundle\Tool\Install;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
@@ -50,6 +52,14 @@ class FormBuilderBundle extends AbstractPimcoreBundle
 
     private function addDBALTypes(): void
     {
+        if (!Type::hasType(FormBuilderObjectType::FORM_BUILDER_OBJECT)) {
+            Type::addType(FormBuilderObjectType::FORM_BUILDER_OBJECT, FormBuilderObjectType::class);
+        }
+
+        if (!Type::hasType(FormBuilderArrayType::FORM_BUILDER_ARRAY)) {
+            Type::addType(FormBuilderArrayType::FORM_BUILDER_ARRAY, FormBuilderArrayType::class);
+        }
+
         if (Type::hasType('form_builder_fields')) {
             return;
         }

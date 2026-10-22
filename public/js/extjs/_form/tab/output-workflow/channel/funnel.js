@@ -10,7 +10,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnel = Class.create(Formbui
         this.funnelLayerPanel = null;
         this.funnelLayerDataClass = null;
 
-        this.panel = new Ext.form.FormPanel({
+        this.panel = Ext.create('Ext.form.Panel', {
             title: false,
             border: false,
             defaults: {},
@@ -34,7 +34,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnel = Class.create(Formbui
             funnelLayerCombo,
             funnelLayerStore;
 
-        funnelLayerCombo = new Ext.form.ComboBox({
+        funnelLayerCombo = Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: t('form_builder.output_workflow.output_workflow_channel.funnel_layer.layers'),
             name: 'funnelLayer',
             submitValue: false,
@@ -62,7 +62,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnel = Class.create(Formbui
             }
         });
 
-        funnelLayerStore = new Ext.data.Store({
+        funnelLayerStore = Ext.create('Ext.data.Store', {
             autoLoad: false,
             autoDestroy: true,
             proxy: {
@@ -113,7 +113,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnel = Class.create(Formbui
                 text: 'No configuration for "' + funnelLayerType + '" found.',
             }];
 
-        element = new Ext.Panel({
+        element = Ext.create('Ext.panel.Panel', {
             style: 'margin-top: 10px',
             autoHeight: true,
             border: false,

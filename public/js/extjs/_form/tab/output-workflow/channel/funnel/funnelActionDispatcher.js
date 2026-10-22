@@ -34,7 +34,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnelActionDispatcher = Clas
 
     buildActionElement: function () {
 
-        this.button = new Ext.Button({
+        this.button = Ext.create('Ext.button.Button', {
             name: this.funnelActionDefinition.name,
             text: this.funnelActionDefinition.label,
             cls: this.funnelActionDefinition.label,
@@ -51,7 +51,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnelActionDispatcher = Clas
 
                     el.getEl().on('contextmenu', function (event) {
                         event.preventDefault();
-                        new Ext.menu.Menu({
+                        Ext.create('Ext.menu.Menu', {
                             items: [
                                 {
                                     text: t('delete'),
@@ -100,7 +100,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnelActionDispatcher = Clas
             funnelActionCombo,
             funnelActionStore;
 
-        funnelActionAllowInvalidSubmission = new Ext.form.Checkbox({
+        funnelActionAllowInvalidSubmission = Ext.create('Ext.form.field.Checkbox', {
             fieldLabel: t('form_builder.output_workflow.output_workflow_channel.funnel_action.ignore_invalid_form_submission'),
             name: 'ignoreInvalidFormSubmission',
             checked: funnelActionAllowInvalidSubmissionValue === true,
@@ -109,7 +109,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnelActionDispatcher = Clas
             labelWidth: 200
         });
 
-        funnelActionCombo = new Ext.form.ComboBox({
+        funnelActionCombo = Ext.create('Ext.form.field.ComboBox', {
             fieldLabel: t('form_builder.output_workflow.output_workflow_channel.funnel_action.action'),
             name: 'funnelLayer',
             submitValue: false,
@@ -137,7 +137,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnelActionDispatcher = Clas
             }
         });
 
-        funnelActionStore = new Ext.data.Store({
+        funnelActionStore = Ext.create('Ext.data.Store', {
             autoLoad: false,
             autoDestroy: true,
             proxy: {
@@ -164,13 +164,13 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.funnelActionDispatcher = Clas
 
         funnelActionCombo.setStore(funnelActionStore);
 
-        this.windowActionPanel = new Ext.form.Panel({
+        this.windowActionPanel = Ext.create('Ext.form.Panel', {
             title: t('form_builder.output_workflow.output_workflow_channel.funnel_layer.funnel_action_configuration'),
             bodyStyle: 'padding: 10px',
             border: false,
         });
 
-        this.window = new Ext.Window({
+        this.window = Ext.create('Ext.window.Window', {
             width: 600,
             height: 400,
             iconCls: 'pimcore_icon_output_workflow_funnel',

@@ -37,7 +37,7 @@ Formbuilder.extjs.types.localizedField = Class.create({
             });
         }.bind(this));
 
-        this.field = new Ext.form.FieldSet({
+        this.field = Ext.create('Ext.form.FieldSet', {
             cls: 'form_builder_type_localized_field',
             layout: 'hbox',
             flex: 1,

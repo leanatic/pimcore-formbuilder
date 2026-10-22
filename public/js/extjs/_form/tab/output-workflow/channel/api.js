@@ -16,7 +16,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.api = Class.create(Formbuilde
         this.apiMappingData = this.data !== null && this.data.hasOwnProperty('apiMappingData') ? this.data['apiMappingData'] : null;
         this.apiConfiguration = this.data !== null && this.data.hasOwnProperty('apiConfiguration') ? this.data['apiConfiguration'] : null;
 
-        this.panel = new Ext.form.FormPanel({
+        this.panel = Ext.create('Ext.form.Panel', {
             title: false,
             border: false,
             defaults: {},
@@ -40,7 +40,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.api = Class.create(Formbuilde
 
     buildApiProviderSelector: function () {
 
-        var comboBox = new Ext.form.ComboBox({
+        var comboBox = Ext.create('Ext.form.field.ComboBox', {
                 fieldLabel: t('form_builder.output_workflow.output_workflow_channel.api.choose_api_provider'),
                 displayField: 'label',
                 labelWidth: 150,
@@ -65,7 +65,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.api = Class.create(Formbuilde
                     }.bind(this),
                 }
             }),
-            store = new Ext.data.Store({
+            store = Ext.create('Ext.data.Store', {
                 autoLoad: false,
                 autoDestroy: true,
                 proxy: {
@@ -139,7 +139,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.api = Class.create(Formbuilde
             this.panel.remove(this.apiProviderPanel);
         }
 
-        this.apiProviderPanel = new Ext.form.FieldSet({
+        this.apiProviderPanel = Ext.create('Ext.form.FieldSet', {
             title: label,
             collapsible: false,
             collapsed: false,
@@ -191,7 +191,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.api = Class.create(Formbuilde
                             name: 'apiConfiguration.' + configRow['name'],
                             fieldLabel: configRow['label'],
                             allowBlank: configRow['required'] === false,
-                            store: new Ext.data.Store({
+                            store: Ext.create('Ext.data.Store', {
                                 fields: ['label', 'value'],
                                 data: configRow['store']
                             }),
@@ -212,7 +212,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.api = Class.create(Formbuilde
                 }
             }.bind(this));
 
-            panels.push(new Ext.form.FormPanel({
+            panels.push(Ext.create('Ext.form.Panel', {
                 title: false,
                 border: false,
                 items: configurationFields
@@ -220,7 +220,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.api = Class.create(Formbuilde
 
         }
 
-        panels.push(new Ext.Panel({
+        panels.push(Ext.create('Ext.panel.Panel', {
             layout: 'hbox',
             anchor: '100%',
             hidden: true,

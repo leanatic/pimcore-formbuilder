@@ -76,7 +76,7 @@ Formbuilder.extjs.formPanel.outputWorkflowPanel = Class.create({
             }
         });
 
-        this.editPanel = new Ext.Panel({
+        this.editPanel = Ext.create('Ext.panel.Panel', {
             region: 'center',
             bodyStyle: 'padding: 10px;',
             cls: 'form-builder-form-output-workflow-panel',
@@ -84,7 +84,7 @@ Formbuilder.extjs.formPanel.outputWorkflowPanel = Class.create({
             border: false,
         });
 
-        this.panel = new Ext.Panel({
+        this.panel = Ext.create('Ext.panel.Panel', {
             title: t('form_builder.tab.output_workflow'),
             closable: false,
             iconCls: 'pimcore_icon_output_workflow',
@@ -171,7 +171,7 @@ Formbuilder.extjs.formPanel.outputWorkflowPanel = Class.create({
 
     onTreeNodeContextMenu: function (tree, record, item, index, e) {
 
-        var menu = new Ext.menu.Menu();
+        var menu = Ext.create('Ext.menu.Menu');
 
         e.stopEvent();
 
@@ -179,7 +179,7 @@ Formbuilder.extjs.formPanel.outputWorkflowPanel = Class.create({
             return;
         }
 
-        menu.add(new Ext.menu.Item({
+        menu.add(Ext.create('Ext.menu.Item', {
             text: t('delete'),
             iconCls: 'pimcore_icon_delete',
             handler: this.deleteOutputWorkflow.bind(this, tree, record)
@@ -206,7 +206,7 @@ Formbuilder.extjs.formPanel.outputWorkflowPanel = Class.create({
             return;
         }
 
-        messageBox = new Ext.Window({
+        messageBox = Ext.create('Ext.window.Window', {
             modal: true,
             width: 500,
             closeAction: 'destroy',

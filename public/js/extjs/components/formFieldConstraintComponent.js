@@ -62,7 +62,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
     renderLayout: function () {
 
         var items = [],
-            item = new Ext.Panel({
+            item = Ext.create('Ext.panel.Panel', {
             title: t('form_builder_base'),
             closable: false,
             autoScroll: true,
@@ -74,7 +74,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
 
         items.push(item);
 
-        this.form = new Ext.form.Panel({
+        this.form = Ext.create('Ext.form.Panel', {
             items: {
                 xtype: 'tabpanel',
                 tabPosition: 'top',
@@ -118,7 +118,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
     createBaseForm: function () {
 
         var configFieldCounter = 0,
-            form = new Ext.form.Panel({
+            form = Ext.create('Ext.form.Panel', {
                 bodyStyle: 'padding: 10px;',
                 labelWidth: 150,
                 defaultType: 'textfield',
@@ -133,7 +133,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
             switch (configElement.type) {
                 case 'string':
                 case 'mixed':
-                    field = new Ext.form.TextField({
+                    field = Ext.create('Ext.form.field.Text', {
                         fieldLabel: configElement.name,
                         name: 'config.' + configElement.name,
                         value: this.getFieldValue(configElement.name, configElement.defaultValue),
@@ -158,7 +158,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
 
                 case 'bool':
                 case 'boolean':
-                    field = new Ext.form.Checkbox({
+                    field = Ext.create('Ext.form.field.Checkbox', {
                         fieldLabel: configElement.name,
                         name: 'config.' + configElement.name,
                         value: this.getFieldValue(configElement.name, configElement.defaultValue),
@@ -184,7 +184,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
 
                 case 'int':
                 case 'integer':
-                    field = new Ext.form.field.Number({
+                    field = Ext.create('Ext.form.field.Number', {
                         fieldLabel: configElement.name,
                         name: 'config.' + configElement.name,
                         value: this.getFieldValue(configElement.name, configElement.defaultValue),
@@ -207,7 +207,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
                     break;
 
                 case 'array':
-                    field = new Ext.form.field.Tag({
+                    field = Ext.create('Ext.form.field.Tag', {
                         fieldLabel: configElement.name,
                         name: 'config.' + configElement.name,
                         value: this.getFieldValue(configElement.name, configElement.defaultValue),
@@ -216,7 +216,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
                         mode: 'local',
                         displayField: 'name',
                         valueField: 'index',
-                        store: new Ext.data.ArrayStore({
+                        store: Ext.create('Ext.data.ArrayStore', {
                             fields: ['index', 'name'],
                             data: []
                         }),
@@ -260,7 +260,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
 
                 configFieldCounter++;
 
-                var fieldContainer = new Ext.form.FieldContainer({
+                var fieldContainer = Ext.create('Ext.form.FieldContainer', {
                     layout: 'hbox',
                     hideLabel: true,
                     style: 'padding-bottom:5px;',
@@ -291,7 +291,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
                         description += '<br>' + t('form_builder_constraint_message_note');
                     }
 
-                    form.add(new Ext.form.Label({
+                    form.add(Ext.create('Ext.form.Label', {
                         name: 'defaultValue',
                         html: description,
                         style: {
@@ -310,7 +310,7 @@ Formbuilder.extjs.components.formFieldConstraint = Class.create({
         }.bind(this));
 
         if (configFieldCounter === 0) {
-            form.add(new Ext.form.Label({
+            form.add(Ext.create('Ext.form.Label', {
                 name: 'label',
                 text: 'Nothing to do so far. Just enjoy this fancy constraint.',
                 style: {

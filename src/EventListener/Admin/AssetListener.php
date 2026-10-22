@@ -18,13 +18,11 @@ use Pimcore\Event\BundleManagerEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Classic Admin (ExtJS) is gone in Pimcore Platform 2026 / Studio.
- * The ExtJS asset registration was removed; the frontend is delivered through the Studio UI
- * bundle (see FormBuilderBundle\Webpack\WebpackEntryPointProvider).
+ * Registers the Classic Admin (ExtJS) form editor assets.
  *
- * This subscriber is kept for BC (service id and event wiring) but intentionally registers no paths.
- *
- * @deprecated will be removed once the Studio UI replaces the former ExtJS interface entirely
+ * Only active when the Classic Admin (pimcore/admin-ui-classic-bundle) is installed, i.e. on Pimcore 12.3 / Platform 2025.4.
+ * On Platform 2026 the Classic Admin is gone and the editor is delivered through the Studio UI bundle
+ * (see FormBuilderBundle\Webpack\WebpackEntryPointProvider).
  */
 class AssetListener implements EventSubscriberInterface
 {
@@ -40,21 +38,116 @@ class AssetListener implements EventSubscriberInterface
 
     public function addCssFiles(PathsEvent $event): void
     {
-        // no-op: ExtJS css is not loaded by Studio
+        if (!$this->isClassicAdminInstalled()) {
+            return;
+        }
+
+        $event->addPaths([
+            '/bundles/formbuilder/css/admin.css'
+        ]);
     }
 
     public function addEditModeCssFiles(PathsEvent $event): void
     {
-        // no-op: document editor is React based in Studio
+        if (!$this->isClassicAdminInstalled()) {
+            return;
+        }
+
+        $event->addPaths([
+            '/bundles/formbuilder/css/admin-editmode.css',
+        ]);
     }
 
     public function addJsFiles(PathsEvent $event): void
     {
-        // no-op: ExtJS js is not loaded by Studio
+        if (!$this->isClassicAdminInstalled()) {
+            return;
+        }
+
+        $event->addPaths([
+            '/bundles/formbuilder/js/extjs/plugin.js',
+            '/bundles/formbuilder/js/extjs/settings.js',
+            '/bundles/formbuilder/js/extjs/types/keyValueRepeater.js',
+            '/bundles/formbuilder/js/extjs/types/localizedField.js',
+            '/bundles/formbuilder/js/extjs/types/href.js',
+            '/bundles/formbuilder/js/extjs/_form/form.js',
+            '/bundles/formbuilder/js/extjs/eventObserver.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/configPanel.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/outputWorkflowPanel.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/outputWorkflowConfigPanel.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/abstractChannel.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/email.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/object.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/api.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel/funnelActionDispatcher.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel/action/abstractAction.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel/action/channelAction.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel/action/returnToFormAction.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel/action/disabledAction.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel/layer/abstractLayer.js',
+            '/bundles/formbuilder/js/extjs/_form/tab/output-workflow/channel/funnel/layer/dynamicLayoutLayer.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/abstract.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/checkbox.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/href.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/key_value_repeater.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/label.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/numberfield.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/options_repeater.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/select.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/tagfield.js',
+            '/bundles/formbuilder/js/extjs/_form/config-fields/textfield.js',
+            '/bundles/formbuilder/js/extjs/_form/data-injection/expression.js',
+            '/bundles/formbuilder/js/extjs/extensions/formMetaData.js',
+            '/bundles/formbuilder/js/extjs/extensions/formMailEditor.js',
+            '/bundles/formbuilder/js/extjs/extensions/formDoubleOptInData.js',
+            '/bundles/formbuilder/js/extjs/extensions/formApiMappingEditor.js',
+            '/bundles/formbuilder/js/extjs/extensions/formDataMappingEditor/formDataMapper.js',
+            '/bundles/formbuilder/js/extjs/extensions/formObjectMappingEditor.js',
+            '/bundles/formbuilder/js/extjs/extensions/formObjectMappingEditor/formObjectTreeMapper.js',
+            '/bundles/formbuilder/js/extjs/extensions/formObjectMappingEditor/worker/fieldCollectionWorker.js',
+            '/bundles/formbuilder/js/extjs/extensions/formObjectMappingEditor/worker/relationWorker.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/builder.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/form.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/condition/abstract.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/condition/elementValue.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/condition/outputWorkflow.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/abstract.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/constraintsAdd.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/constraintsRemove.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/toggleElement.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/changeValue.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/triggerEvent.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/toggleClass.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/toggleAvailability.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/switchOutputWorkflow.js',
+            '/bundles/formbuilder/js/extjs/conditional-logic/action/successMessage.js',
+            '/bundles/formbuilder/js/extjs/components/formTypeBuilderComponent.js',
+            '/bundles/formbuilder/js/extjs/components/formFieldConstraintComponent.js',
+            '/bundles/formbuilder/js/extjs/components/formFieldContainerComponent.js',
+            '/bundles/formbuilder/js/extjs/components/formImporterComponent.js',
+            '/bundles/formbuilder/js/extjs/components/successMessageToggleComponent.js',
+            '/bundles/formbuilder/js/extjs/components/elements/Formbuilder.HrefTextField.js',
+            '/bundles/formbuilder/js/extjs/vendor/dataObject.js',
+            '/bundles/formbuilder/js/extjs/editor/AbstractFieldComponent.js',
+            '/bundles/formbuilder/js/extjs/editor/ContainerFieldComponent.js',
+            '/bundles/formbuilder/js/extjs/editor/FieldComponent.js'
+        ]);
     }
 
     public function addEditModeJsFiles(PathsEvent $event): void
     {
-        // no-op: document editor is React based in Studio
+        if (!$this->isClassicAdminInstalled()) {
+            return;
+        }
+
+        $event->addPaths([
+            '/bundles/formbuilder/js/admin/area.js'
+        ]);
+    }
+
+    private function isClassicAdminInstalled(): bool
+    {
+        return class_exists('Pimcore\\Bundle\\AdminBundle\\PimcoreAdminBundle');
     }
 }

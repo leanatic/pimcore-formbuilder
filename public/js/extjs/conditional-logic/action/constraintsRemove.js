@@ -13,7 +13,7 @@ Formbuilder.extjs.conditionalLogic.action.constraintsRemove = Class.create(Formb
                 fields: ['name', 'display_name'],
                 data: this.panel.getFormFields()
             }),
-            validationSelectionField = new Ext.form.field.Tag({
+            validationSelectionField = Ext.create('Ext.form.field.Tag', {
                 xtype: 'tagfield',
                 style: 'margin:0 5px 0 0',
                 name: _.generateFieldName(this.sectionId, this.index, 'validation'),
@@ -99,7 +99,7 @@ Formbuilder.extjs.conditionalLogic.action.constraintsRemove = Class.create(Formb
                     }
                 }
             ],
-            compositeField = new Ext.form.FieldContainer({
+            compositeField = Ext.create('Ext.form.FieldContainer', {
                 layout: 'hbox',
                 submitValue: false,
                 hideLabel: true,
@@ -108,7 +108,7 @@ Formbuilder.extjs.conditionalLogic.action.constraintsRemove = Class.create(Formb
             }),
             fieldId = Ext.id();
 
-        return new Ext.form.FormPanel({
+        return Ext.create('Ext.form.Panel', {
             id: fieldId,
             type: 'combo',
             forceLayout: true,

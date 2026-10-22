@@ -12,7 +12,7 @@ FormbuilderEventObserver = Class.create({
             return;
         }
 
-        this.observerSections[observableId] = new Ext.util.Observable();
+        this.observerSections[observableId] = Ext.create('Ext.util.Observable');
     },
 
     unregisterObservable: function (observableId) {

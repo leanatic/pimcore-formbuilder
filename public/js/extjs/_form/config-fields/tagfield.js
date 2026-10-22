@@ -3,12 +3,12 @@ Formbuilder.extjs.form.fields.tagfield = Class.create(Formbuilder.extjs.form.fie
     getField: function(fieldConfig, value)
     {
         var hasStore = fieldConfig.config && Ext.isArray(fieldConfig.config.store),
-            tagStore = new Ext.data.ArrayStore({
+            tagStore = Ext.create('Ext.data.ArrayStore', {
                 fields: ['index', 'name'],
                 data: hasStore ? fieldConfig.config.store : []
             });
 
-        return new Ext.form.field.Tag({
+        return Ext.create('Ext.form.field.Tag', {
             name: fieldConfig.id,
             fieldLabel: fieldConfig.label,
             queryDelay: 0,

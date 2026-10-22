@@ -35,7 +35,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.configPanel = Class.create({
         var observerListener,
             observerChannelListener;
 
-        this.panel = new Ext.form.FormPanel({
+        this.panel = Ext.create('Ext.form.Panel', {
             title: t('form_builder.tab.output_workflow') + ' "' + this.workflowData.name + '"',
             border: false,
             tools: [
@@ -117,7 +117,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.configPanel = Class.create({
             return [];
         }
 
-        this.funnelNagPanel = new Ext.form.Panel({
+        this.funnelNagPanel = Ext.create('Ext.form.Panel', {
             iconCls: 'pimcore_icon_output_workflow_funnel',
             title: t('form_builder.output_workflow.output_workflow_channel_funnel_workflow'),
             autoScroll: true,
@@ -157,7 +157,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.configPanel = Class.create({
         successMessageToggleComponent = new Formbuilder.extjs.components.successMessageToggleComponent(fieldId, componentConfiguration, this.outputWorkflowSuccessManagementData, true);
         successMessageToggleComponent.setBodyStyle('');
 
-        this.channelSuccessManagementPanel = new Ext.form.Panel({
+        this.channelSuccessManagementPanel = Ext.create('Ext.form.Panel', {
             iconCls: 'pimcore_icon_output_workflow_channel',
             title: t('form_builder.output_workflow.output_workflow_channel_success_management'),
             autoScroll: true,
@@ -177,7 +177,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.configPanel = Class.create({
 
     getOutputChannelPanel: function () {
 
-        this.channelPanel = new Ext.Panel({
+        this.channelPanel = Ext.create('Ext.panel.Panel', {
             iconCls: 'pimcore_icon_output_workflow_channel',
             style: 'margin-top: 20px',
             title: t('form_builder.output_workflow.output_workflow_channel_configuration'),
@@ -233,7 +233,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.configPanel = Class.create({
             });
         }
 
-        return new Ext.Toolbar({
+        return Ext.create('Ext.toolbar.Toolbar', {
             items: items
         });
     },
@@ -298,7 +298,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.configPanel = Class.create({
             }
         });
 
-        return toolbar = new Ext.Toolbar({
+        return toolbar = Ext.create('Ext.toolbar.Toolbar', {
             items: items
         });
     },
@@ -351,7 +351,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.configPanel = Class.create({
             }]
         }
 
-        element = new Ext.Panel({
+        element = Ext.create('Ext.panel.Panel', {
             style: 'margin-top: 10px',
             bodyStyle: 'padding:10px;',
             autoHeight: true,

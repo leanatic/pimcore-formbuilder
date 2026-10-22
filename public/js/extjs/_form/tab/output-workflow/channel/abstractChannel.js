@@ -34,7 +34,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.abstractChannel = Class.creat
         this.funnelActionDispatcherDataClasses = [];
 
         if (this.channelName === null) {
-            uuidGenerator = new Ext.data.identifier.Uuid();
+            uuidGenerator = Ext.create('Ext.data.identifier.Uuid');
             this.channelName = uuidGenerator.generate();
         }
 
@@ -117,7 +117,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.abstractChannel = Class.creat
     getFunnelActionLayout: function () {
 
         return this.funnelActionLayout = this.isVirtualFunnelAware()
-            ? new Ext.Panel({
+            ? Ext.create('Ext.panel.Panel', {
                 xtype: 'panel',
                 bodyStyle: 'background: #c3d6c6; padding: 10px;',
                 layout: 'hbox',
@@ -130,7 +130,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.abstractChannel = Class.creat
                     },
                 ]
             })
-            : new Ext.form.FieldSet({
+            : Ext.create('Ext.form.FieldSet', {
                 xtype: 'fieldset',
                 title: t('form_builder.output_workflow.output_workflow_channel.funnel_layer.funnel_actions'),
                 collapsible: false,

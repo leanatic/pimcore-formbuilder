@@ -15,7 +15,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.email = Class.create(Formbuil
 
         items.push(mailTemplateField);
 
-        this.panel = new Ext.form.FormPanel({
+        this.panel = Ext.create('Ext.form.Panel', {
             title: false,
             defaults: {
                 labelWidth: 200
@@ -57,7 +57,7 @@ Formbuilder.extjs.formPanel.outputWorkflow.channel.email = Class.create(Formbuil
                 valueField: 'index',
                 mode: 'local',
                 labelAlign: 'top',
-                store: new Ext.data.ArrayStore({
+                store: Ext.create('Ext.data.ArrayStore', {
                     fields: ['index', 'name'],
                     data: []
                 }),

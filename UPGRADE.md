@@ -1,11 +1,14 @@
 # Upgrade Notes
 
-## 6.0.0 (Pimcore Platform 2026.3 / Studio)
-- **[BREAKING]** Requires Pimcore Platform `^2026.3` (PHP `^8.3 || ^8.4 || ^8.5`, Symfony `^7.4`). The Classic Admin (ExtJS) UI and `pimcore/admin-ui-classic-bundle` are no longer supported.
+## 6.0.0 (Pimcore 12.3 / Platform 2025.4 and Platform 2026.3 / Studio)
+- **[BREAKING]** Requires Pimcore `^12.3` (Platform 2025.4) or Platform `^2026.3` (PHP `^8.3 || ^8.4 || ^8.5`, Symfony `^7.4`), together with Pimcore Studio (`^2025.4 || ^2026.3`). Pimcore 11 is no longer supported.
+- **[NEW]** On Pimcore 12.3 / Platform 2025.4 the Classic Admin (ExtJS) form editor keeps working when `pimcore/admin-ui-classic-bundle` is installed (ExtJS updated for Pimcore 12). Platform 2026 has no Classic Admin; there the editor is Studio only.
+- **[CHANGE]** DBAL 4 removed the `object` and `array` column types. They are replaced by `form_builder_object` / `form_builder_array`, which keep the PHP-serialized storage, so data from 5.x stays readable without a data migration. The only schema difference is the dropped `(DC2Type:object|array)` column comment.
+- **[NOTE]** After installing or updating, clear the Pimcore cache (`bin/console pimcore:cache:clear`): Studio caches the list of known permissions, and the Studio endpoints deny access until `formbuilder_permission_settings` is in that list.
 - **[NEW]** Studio Backend API endpoints under `FormBuilderBundle\Controller\Studio` (routes are loaded via `config/pimcore/routing_studio.yaml`, prefix `%pimcore_studio_backend.url_prefix%`). All endpoints are protected by the `formbuilder_permission_settings` permission.
 - **[NEW]** `FormBuilderBundle\Webpack\WebpackEntryPointProvider` (tag `pimcore_studio_ui.webpack_entry_point_provider`) is registered for the upcoming Studio UI build (`public/build/*/entrypoints.json`). The React UI itself is not part of this release step yet.
 - **[BREAKING]** `FormBuilderBundle\Controller\Admin\*` controllers now extend `Symfony\Bundle\FrameworkBundle\Controller\AbstractController` (no `AdminAbstractController` anymore, `adminJson()` was replaced by `json()`). They are protected by `#[IsGranted('formbuilder_permission_settings')]`. The legacy `/admin/formbuilder/*` routes are kept for now but are deprecated in favour of the Studio API.
-- **[BREAKING]** `FormBuilderBundle\EventListener\Admin\AssetListener` does not register any ExtJS js/css/editmode paths anymore.
+- **[CHANGE]** `FormBuilderBundle\EventListener\Admin\AssetListener` registers the ExtJS js/css/editmode paths only when the Classic Admin (`Pimcore\Bundle\AdminBundle\PimcoreAdminBundle`) is installed.
 - **[BREAKING]** The `ExtJsFormBuilder` and areabrick dialog services use the default `translator` service instead of `Pimcore\Bundle\AdminBundle\Translation\AdminUserTranslator`.
 - **[IMPROVEMENT]** `Install` does not rely on `Pimcore\Tool\Admin::getLanguages()` anymore; configured system languages are used (fallback: `en`, `de`).
 

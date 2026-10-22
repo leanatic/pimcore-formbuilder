@@ -26,7 +26,7 @@ Formbuilder.settings = Class.create({
 
         Formbuilder.eventObserver = new FormbuilderEventObserver();
 
-        this.panel = new Ext.Panel({
+        this.panel = Ext.create('Ext.panel.Panel', {
             id: 'form_builder_settings',
             title: t('form_builder_settings'),
             border: false,
@@ -82,7 +82,7 @@ Formbuilder.settings = Class.create({
             }
         });
 
-        this.tree = new Ext.tree.TreePanel({
+        this.tree = Ext.create('Ext.tree.Panel', {
             id: 'form_builder_panel_settings_tree',
             region: 'west',
             store: store,
@@ -119,7 +119,7 @@ Formbuilder.settings = Class.create({
     getEditPanel: function () {
 
         if (!this.editPanel) {
-            this.editPanel = new Ext.TabPanel({
+            this.editPanel = Ext.create('Ext.tab.Panel', {
                 activeTab: 0,
                 items: [],
                 region: 'center',
@@ -168,8 +168,8 @@ Formbuilder.settings = Class.create({
             return;
         }
 
-        menu = new Ext.menu.Menu();
-        menu.add(new Ext.menu.Item({
+        menu = Ext.create('Ext.menu.Menu');
+        menu.add(Ext.create('Ext.menu.Item', {
             text: t('delete'),
             iconCls: 'pimcore_icon_delete',
             handler: this.deleteForm.bind(this, tree, record)

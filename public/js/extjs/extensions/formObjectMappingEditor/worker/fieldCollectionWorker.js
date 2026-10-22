@@ -42,7 +42,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.fieldCollectionWorker
         this.node = node;
 
         var firstTimeLoad = true,
-            comboBox = new Ext.form.ComboBox({
+            comboBox = Ext.create('Ext.form.field.ComboBox', {
                 fieldLabel: t('form_builder.output_workflow.output_workflow_channel.object.fc_worker_fieldcollection'),
                 displayField: 'label',
                 valueField: 'key',
@@ -70,7 +70,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.fieldCollectionWorker
                     }.bind(this),
                 }
             }),
-            store = new Ext.data.Store({
+            store = Ext.create('Ext.data.Store', {
                 autoLoad: false,
                 autoDestroy: true,
                 proxy: {
@@ -110,7 +110,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.fieldCollectionWorker
 
         this.comboBox = comboBox;
 
-        this.window = new Ext.Window({
+        this.window = Ext.create('Ext.window.Window', {
             width: 900,
             height: 540,
             iconCls: 'form_builder_output_workflow_channel_object_mapper',
@@ -174,7 +174,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.fieldCollectionWorker
         formObjectTreeMapperPanel = this.formObjectTreeMapper.getLayout();
         formObjectTreeMapperPanel.region = 'center';
 
-        this.editPanel = new Ext.form.Panel({
+        this.editPanel = Ext.create('Ext.form.Panel', {
             layout: 'border',
             items: [
                 formObjectTreeMapperPanel,
@@ -189,7 +189,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.fieldCollectionWorker
 
         var _ = this;
 
-        return new Ext.form.FormPanel({
+        return Ext.create('Ext.form.Panel', {
             title: t('form_builder.output_workflow.output_workflow_channel.object.fc_worker_validation_configuration'),
             collapsible: true,
             collapsed: true,
@@ -251,7 +251,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.fieldCollectionWorker
                                     });
                                 }
                             },
-                            store: new Ext.data.Store({
+                            store: Ext.create('Ext.data.Store', {
                                 autoLoad: false,
                                 proxy: {
                                     type: 'ajax',
@@ -332,7 +332,7 @@ Formbuilder.extjs.extensions.formObjectMappingEditorWorker.fieldCollectionWorker
                                     });
                                 }
                             },
-                            store: new Ext.data.Store({
+                            store: Ext.create('Ext.data.Store', {
                                 autoLoad: false,
                                 proxy: {
                                     type: 'ajax',

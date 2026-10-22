@@ -60,7 +60,7 @@ Formbuilder.extjs.types.keyValueRepeater = Class.create({
             storeData.push(['grouped', t('form_builder_repeater_grouped')]);
         }
 
-        this.typeSelector = new Ext.form.ComboBox({
+        this.typeSelector = Ext.create('Ext.form.field.ComboBox', {
             width: 300,
             triggerAction: 'all',
             submitValue: false,
@@ -120,7 +120,7 @@ Formbuilder.extjs.types.keyValueRepeater = Class.create({
             });
         }
 
-        this.repeater = new Ext.form.FieldSet({
+        this.repeater = Ext.create('Ext.form.FieldSet', {
             title: this.fieldLabel,
             collapsible: false,
             autoHeight: true,
@@ -188,7 +188,7 @@ Formbuilder.extjs.types.keyValueRepeater = Class.create({
             }
         ];
 
-        var compositeField = new Ext.form.FieldSet({
+        var compositeField = Ext.create('Ext.form.FieldSet', {
             collapsible: false,
             autoHeight: true,
             width: '100%',
@@ -227,7 +227,7 @@ Formbuilder.extjs.types.keyValueRepeater = Class.create({
 
         if (this.optionType === 'user') {
 
-            optionField = new Ext.form.TextField({
+            optionField = Ext.create('Ext.form.field.Text', {
                 name: _.generateFieldName(fieldSetIndex, fieldContainerIndex, 'option'),
                 fieldLabel: t('form_builder_option'),
                 anchor: '100%',
@@ -244,14 +244,14 @@ Formbuilder.extjs.types.keyValueRepeater = Class.create({
 
         } else {
 
-            optionField = new Ext.form.ComboBox({
+            optionField = Ext.create('Ext.form.field.ComboBox', {
                 name: _.generateFieldName(fieldSetIndex, fieldContainerIndex, 'option'),
                 fieldLabel: t('form_builder_option'),
                 queryDelay: 0,
                 displayField: 'label',
                 valueField: 'value',
                 mode: 'local',
-                store: new Ext.data.ArrayStore({
+                store: Ext.create('Ext.data.ArrayStore', {
                     fields: ['label', 'value'],
                     data: this.optionStore
                 }),
@@ -270,7 +270,7 @@ Formbuilder.extjs.types.keyValueRepeater = Class.create({
 
         }
 
-        var compositeField = new Ext.form.FieldContainer({
+        var compositeField = Ext.create('Ext.form.FieldContainer', {
             layout: 'hbox',
             hideLabel: true,
             style: 'padding-bottom:5px;',
@@ -368,7 +368,7 @@ Formbuilder.extjs.types.keyValueRepeater = Class.create({
                     }
                 }
 
-                var metaWindow = new Ext.Window({
+                var metaWindow = Ext.create('Ext.window.Window', {
                     width: 600,
                     height: 400,
                     iconCls: 'pimcore_icon_settings',

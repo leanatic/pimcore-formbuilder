@@ -19,7 +19,7 @@ Formbuilder.extjs.extensions.formDoubleOptInData = Class.create({
             return this.detailWindow;
         }
 
-        this.detailWindow = new Ext.Window({
+        this.detailWindow = Ext.create('Ext.window.Window', {
             width: 800,
             height: 600,
             iconCls: 'pimcore_icon_info',
@@ -49,7 +49,7 @@ Formbuilder.extjs.extensions.formDoubleOptInData = Class.create({
             itemsPerPage = pimcore.helpers.grid.getDefaultPageSize(-1),
             sessionsStore, sessionsGrid, sessionsPanel;
 
-        sessionsStore = new Ext.data.Store({
+        sessionsStore = Ext.create('Ext.data.Store', {
             pageSize: itemsPerPage,
             proxy: {
                 type: 'ajax',
@@ -63,7 +63,7 @@ Formbuilder.extjs.extensions.formDoubleOptInData = Class.create({
             fields: ['token', 'email', 'dispatchLocation', 'applied', 'creationDate']
         });
 
-        sessionsGrid = new Ext.grid.GridPanel({
+        sessionsGrid = Ext.create('Ext.grid.Panel', {
             store: sessionsStore,
             columns: [
                 {
@@ -158,7 +158,7 @@ Formbuilder.extjs.extensions.formDoubleOptInData = Class.create({
 
         sessionsStore.load();
 
-        sessionsPanel = new Ext.Panel({
+        sessionsPanel = Ext.create('Ext.panel.Panel', {
             title: t('form_builder_form.double_opt_in.sessions'),
             flex: 1,
             layout: {
@@ -173,7 +173,7 @@ Formbuilder.extjs.extensions.formDoubleOptInData = Class.create({
 
         items.push(sessionsPanel);
 
-        this.detailWindow.add(new Ext.form.FormPanel({
+        this.detailWindow.add(Ext.create('Ext.form.Panel', {
             border: false,
             frame: false,
             bodyStyle: 'padding:10px',
