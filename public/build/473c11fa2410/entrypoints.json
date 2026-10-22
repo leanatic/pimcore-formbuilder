@@ -1,0 +1,24 @@
+{
+  "entrypoints": {
+    "main": {
+      "js": [
+        "/bundles/formbuilder/build/473c11fa2410/static/js/782.f4a8173b.js",
+        "/bundles/formbuilder/build/473c11fa2410/static/js/main.8d3695f7.js"
+      ],
+      "css": []
+    },
+    "formbuilder_studio_ui": {
+      "js": [
+        "/bundles/formbuilder/build/473c11fa2410/static/js/async/__federation_expose_default_export.8dac95ac.js",
+        "/bundles/formbuilder/build/473c11fa2410/static/js/remoteEntry.js"
+      ],
+      "css": []
+    },
+    "exposeRemote": {
+      "js": [
+        "/bundles/formbuilder/build/473c11fa2410/exposeRemote.js"
+      ],
+      "css": []
+    }
+  }
+}

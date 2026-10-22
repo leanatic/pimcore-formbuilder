@@ -5,3 +5,8 @@ imports:
     - { resource: services/forms/*.yaml }
     - { resource: services/transformer/*.yaml }
     - { resource: services/*.yaml }
+
+services:
+    FormBuilderBundle\Webpack\WebpackEntryPointProvider:
+        tags:
+            - { name: pimcore_studio_ui.webpack_entry_point_provider }

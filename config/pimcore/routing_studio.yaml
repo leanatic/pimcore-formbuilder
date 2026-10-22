@@ -1,0 +1,4 @@
+formbuilder_studio_api:
+    resource: ../../src/Controller/Studio/
+    type: attribute
+    prefix: '%pimcore_studio_backend.url_prefix%'

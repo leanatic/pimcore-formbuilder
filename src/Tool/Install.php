@@ -20,7 +20,7 @@ use Pimcore\Model\Asset;
 use Pimcore\Model\Document\DocType;
 use Pimcore\Model\Translation;
 use Pimcore\Model\User\Permission;
-use Pimcore\Tool\Admin;
+use Pimcore\Tool;
 
 class Install extends SettingsStoreAwareInstaller
 {
@@ -58,16 +58,33 @@ class Install extends SettingsStoreAwareInstaller
         $csvAdmin = $this->getInstallSourcesPath() . '/translations/admin.csv';
 
         try {
-            Translation::importTranslationsFromFile($csvWebsite, Translation::DOMAIN_DEFAULT, false, Admin::getLanguages());
+            Translation::importTranslationsFromFile($csvWebsite, Translation::DOMAIN_DEFAULT, false, $this->getTranslationLanguages());
         } catch (\Exception $e) {
             throw new InstallationException(sprintf('Failed to install website translations. error was: "%s"', $e->getMessage()));
         }
 
         try {
-            Translation::importTranslationsFromFile($csvAdmin, Translation::DOMAIN_ADMIN, false, Admin::getLanguages());
+            Translation::importTranslationsFromFile($csvAdmin, Translation::DOMAIN_ADMIN, false, $this->getTranslationLanguages());
         } catch (\Exception $e) {
             throw new InstallationException(sprintf('Failed to install admin translations. error was: "%s"', $e->getMessage()));
         }
+    }
+
+    /**
+     * Pimcore\Tool\Admin::getLanguages() is @internal and tied to the removed classic admin translation files,
+     * so we rely on the configured system languages instead (with a safe fallback).
+     *
+     * @return array<int, string>
+     */
+    protected function getTranslationLanguages(): array
+    {
+        try {
+            $languages = Tool::getValidLanguages();
+        } catch (\Throwable) {
+            $languages = [];
+        }
+
+        return count($languages) > 0 ? array_values($languages) : ['en', 'de'];
     }
 
     protected function installDbStructure(): void

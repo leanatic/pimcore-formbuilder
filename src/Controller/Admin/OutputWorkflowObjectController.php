@@ -20,13 +20,15 @@ use FormBuilderBundle\Manager\OutputWorkflowManager;
 use FormBuilderBundle\Model\FormDefinitionInterface;
 use FormBuilderBundle\OutputWorkflow\DynamicObjectResolver\DynamicObjectResolverInterface;
 use FormBuilderBundle\Registry\DynamicObjectResolverRegistry;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
 use Pimcore\Model\DataObject;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-class OutputWorkflowObjectController extends AdminAbstractController
+#[IsGranted('formbuilder_permission_settings')]
+class OutputWorkflowObjectController extends AbstractController
 {
     public function __construct(
         protected Configuration $configuration,
@@ -50,7 +52,7 @@ class OutputWorkflowObjectController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->json([
             'success' => true,
             'types'   => $classList
         ]);
@@ -81,7 +83,7 @@ class OutputWorkflowObjectController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->json([
             'success' => true,
             'fields'  => $flattenFields
         ]);
@@ -115,7 +117,7 @@ class OutputWorkflowObjectController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->json([
             'success' => true,
             'types'   => $allowedTypes
         ]);
@@ -162,7 +164,7 @@ class OutputWorkflowObjectController extends AdminAbstractController
 
         $configuration['formFieldDefinitions'] = $extJsFormFields;
 
-        return $this->adminJson([
+        return $this->json([
             'success'       => true,
             'configuration' => $configuration
         ]);
@@ -189,7 +191,7 @@ class OutputWorkflowObjectController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->json([
             'success'  => true,
             'resolver' => $data
         ]);

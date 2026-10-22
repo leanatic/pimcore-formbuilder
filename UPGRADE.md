@@ -1,5 +1,14 @@
 # Upgrade Notes
 
+## 6.0.0 (Pimcore Platform 2026.3 / Studio)
+- **[BREAKING]** Requires Pimcore Platform `^2026.3` (PHP `^8.3 || ^8.4 || ^8.5`, Symfony `^7.4`). The Classic Admin (ExtJS) UI and `pimcore/admin-ui-classic-bundle` are no longer supported.
+- **[NEW]** Studio Backend API endpoints under `FormBuilderBundle\Controller\Studio` (routes are loaded via `config/pimcore/routing_studio.yaml`, prefix `%pimcore_studio_backend.url_prefix%`). All endpoints are protected by the `formbuilder_permission_settings` permission.
+- **[NEW]** `FormBuilderBundle\Webpack\WebpackEntryPointProvider` (tag `pimcore_studio_ui.webpack_entry_point_provider`) is registered for the upcoming Studio UI build (`public/build/*/entrypoints.json`). The React UI itself is not part of this release step yet.
+- **[BREAKING]** `FormBuilderBundle\Controller\Admin\*` controllers now extend `Symfony\Bundle\FrameworkBundle\Controller\AbstractController` (no `AdminAbstractController` anymore, `adminJson()` was replaced by `json()`). They are protected by `#[IsGranted('formbuilder_permission_settings')]`. The legacy `/admin/formbuilder/*` routes are kept for now but are deprecated in favour of the Studio API.
+- **[BREAKING]** `FormBuilderBundle\EventListener\Admin\AssetListener` does not register any ExtJS js/css/editmode paths anymore.
+- **[BREAKING]** The `ExtJsFormBuilder` and areabrick dialog services use the default `translator` service instead of `Pimcore\Bundle\AdminBundle\Translation\AdminUserTranslator`.
+- **[IMPROVEMENT]** `Install` does not rely on `Pimcore\Tool\Admin::getLanguages()` anymore; configured system languages are used (fallback: `en`, `de`).
+
 ## 5.3.4
 - **[SECURITY]** Introduce upload field reference and server-side MIME type validation. Read more about upload security [here](./docs/80_FileUpload.md#security)
 - **[SECURITY]** introduce policy validation for uploads. Read more about it [here](./docs/80_FileUpload.md#upload-policy-validator)

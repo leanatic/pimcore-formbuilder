@@ -1,3 +1,8 @@
+# Studio Backend API routes (attribute based, see src/Controller/Studio)
+formbuilder_studio_api_routing:
+    resource: routing_studio.yaml
+
+# Legacy admin routes (kept for BC, classic admin ui is gone in Pimcore 2026)
 form_builder.controller.admin.get_tree:
     path: /admin/formbuilder/settings/get-tree
     defaults: { _controller: FormBuilderBundle\Controller\Admin\SettingsController::getTreeAction }

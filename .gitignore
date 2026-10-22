@@ -52,3 +52,6 @@ php-cgi.core
 /tests/_data/*
 !/tests/_data/.gitkeep
 /tests/Support/_generated/*
+
+# Studio UI build tooling
+/assets/node_modules/

@@ -1,0 +1,37 @@
+{
+  "allFiles": [
+    "/bundles/formbuilder/build/473c11fa2410/static/js/main.8d3695f7.js",
+    "/bundles/formbuilder/build/473c11fa2410/static/js/remoteEntry.js",
+    "/bundles/formbuilder/build/473c11fa2410/static/js/async/__federation_expose_default_export.8dac95ac.js",
+    "/bundles/formbuilder/build/473c11fa2410/static/js/782.f4a8173b.js",
+    "/bundles/formbuilder/build/473c11fa2410/mf-stats.json",
+    "/bundles/formbuilder/build/473c11fa2410/mf-manifest.json",
+    "/bundles/formbuilder/build/473c11fa2410/main.html"
+  ],
+  "entries": {
+    "main": {
+      "html": [
+        "/bundles/formbuilder/build/473c11fa2410/main.html"
+      ],
+      "initial": {
+        "js": [
+          "/bundles/formbuilder/build/473c11fa2410/static/js/782.f4a8173b.js",
+          "/bundles/formbuilder/build/473c11fa2410/static/js/main.8d3695f7.js"
+        ]
+      }
+    },
+    "formbuilder_studio_ui": {
+      "initial": {
+        "js": [
+          "/bundles/formbuilder/build/473c11fa2410/static/js/remoteEntry.js"
+        ]
+      },
+      "async": {
+        "js": [
+          "/bundles/formbuilder/build/473c11fa2410/static/js/async/__federation_expose_default_export.8dac95ac.js"
+        ]
+      }
+    }
+  },
+  "integrity": {}
+}

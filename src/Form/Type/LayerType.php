@@ -43,7 +43,7 @@ class LayerType extends AbstractType
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'funnel_action_element_stack' => null,

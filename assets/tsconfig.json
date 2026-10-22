@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "es2020",
+    "lib": ["dom", "dom.iterable", "es2021"],
+    "moduleResolution": "bundler",
+    "types": ["webpack-env", "node"],
+    "baseUrl": "./js/",
+    "strict": true,
+    "noImplicitAny": false,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./js/**/*",
+    "./rsbuild.config.ts"
+  ]
+}

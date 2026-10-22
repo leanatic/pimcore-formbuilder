@@ -18,12 +18,14 @@ use FormBuilderBundle\Manager\FormDefinitionManager;
 use FormBuilderBundle\Model\FormDefinitionInterface;
 use FormBuilderBundle\Registry\ApiProviderRegistry;
 use FormBuilderBundle\Registry\FieldTransformerRegistry;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-class OutputWorkflowApiController extends AdminAbstractController
+#[IsGranted('formbuilder_permission_settings')]
+class OutputWorkflowApiController extends AbstractController
 {
     public function __construct(
         protected FormDefinitionManager $formDefinitionManager,
@@ -73,7 +75,7 @@ class OutputWorkflowApiController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->json([
             'success'       => true,
             'configuration' => [
                 'formFieldDefinitions' => $extJsFormFields,
@@ -113,7 +115,7 @@ class OutputWorkflowApiController extends AdminAbstractController
             ];
         }
 
-        return $this->adminJson([
+        return $this->json([
             'success' => true,
             'types'   => $data
         ]);
