@@ -1,5 +1,11 @@
 # Upgrade Notes
 
+## 6.0.1
+- **[CHANGE]** `MailParser` and `FunnelOutputChannel` render with `Twig\Environment` instead of the `Symfony\Component\Templating\EngineInterface` service, which Pimcore 13 removes. `FunnelOutputChannel::__construct()` no longer takes `$templating` (it already had `Twig\Environment $renderer`); adjust subclasses that pass it.
+- **[CHANGE]** The form themes use the new filter `form_builder_spaceless` instead of Twig's `spaceless` (deprecated in Twig 3.12). It keeps the exact behavior; use it in custom theme overrides as well.
+- **[BUGFIX]** The label regex of the Bootstrap 4/5 themes (`/<\s*\w[^>]*>/`) matches whitespace after `<` again: Twig had dropped the backslash of `\s`.
+- **[IMPROVEMENT]** `!tagged_iterator` instead of the deprecated `!tagged` in the conditional logic dispatcher.
+
 ## 6.0.0 (Pimcore 12.3 / Platform 2025.4 and Platform 2026.3 / Studio)
 - **[BREAKING]** Requires Pimcore `^12.3` (Platform 2025.4) or Platform `^2026.3` (PHP `^8.3 || ^8.4 || ^8.5`, Symfony `^7.4`), together with Pimcore Studio (`^2025.4 || ^2026.3`). Pimcore 11 is no longer supported.
 - **[NEW]** On Pimcore 12.3 / Platform 2025.4 the Classic Admin (ExtJS) form editor keeps working when `pimcore/admin-ui-classic-bundle` is installed (ExtJS updated for Pimcore 12). Platform 2026 has no Classic Admin; there the editor is Studio only.

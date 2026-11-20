@@ -187,7 +187,7 @@ class MyUploaderAdapter implements DynamicMultiFileAdapterInterface
 
 ```twig
 {% block form_builder_dynamicmultifile_my_uploader_widget %}
-    {% apply spaceless %}
+    {% apply form_builder_spaceless %}
         <div {{ block('attributes') }}>
             <div class="my-uploader-container">{# your adapter markup #}</div>
         </div>

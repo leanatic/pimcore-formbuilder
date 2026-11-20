@@ -1,7 +1,7 @@
 {% block form_builder_snippet_type_label %}{% endblock %}
 
 {% block form_builder_snippet_type_widget %}
-    {% apply spaceless %}
+    {% apply form_builder_spaceless %}
         <div {{ block('attributes') }}>
         {% if path is not empty %}
             {{ pimcore_inc(path) }}

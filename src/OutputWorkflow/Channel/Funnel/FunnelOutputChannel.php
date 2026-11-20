@@ -35,7 +35,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Templating\EngineInterface;
 use Twig\Environment;
 
 class FunnelOutputChannel implements ChannelInterface, FunnelAwareChannelInterface
@@ -43,20 +42,17 @@ class FunnelOutputChannel implements ChannelInterface, FunnelAwareChannelInterfa
     public const RENDER_TYPE_INCLUDE = 'include';
     public const RENDER_TYPE_PRERENDER = 'prerender';
 
-    protected EngineInterface $templating;
     protected SerializerInterface $serializer;
     protected FunnelLayerRegistry $funnelLayerRegistry;
     protected FormFactoryInterface $formFactory;
     protected Environment $renderer;
 
     public function __construct(
-        EngineInterface $templating,
         SerializerInterface $serializer,
         FunnelLayerRegistry $funnelLayerRegistry,
         FormFactoryInterface $formFactory,
         Environment $renderer
     ) {
-        $this->templating = $templating;
         $this->serializer = $serializer;
         $this->funnelLayerRegistry = $funnelLayerRegistry;
         $this->formFactory = $formFactory;
@@ -157,7 +153,7 @@ class FunnelOutputChannel implements ChannelInterface, FunnelAwareChannelInterfa
         ];
 
         if ($renderType === self::RENDER_TYPE_PRERENDER) {
-            $template = $this->renderer->createTemplate($this->templating->render(
+            $template = $this->renderer->createTemplate($this->renderer->render(
                 $funnelLayerData->getFunnelLayerView(),
                 $viewArguments
             ));
@@ -165,7 +161,7 @@ class FunnelOutputChannel implements ChannelInterface, FunnelAwareChannelInterfa
             $templateArguments['view'] = $template->render($viewArguments);
         }
 
-        $template = $this->templating->render(
+        $template = $this->renderer->render(
             '@FormBuilder/funnel/base.html.twig',
             array_merge($viewArguments, $templateArguments)
         );

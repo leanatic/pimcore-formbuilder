@@ -1,7 +1,7 @@
 {% block form_builder_html_tag_type_label %}{% endblock %}
 
 {% block form_builder_html_tag_type_widget %}
-    {% apply spaceless %}
+    {% apply form_builder_spaceless %}
         <{{ tag }} {{ block('attributes') }}>{{ label|trans }}</{{ tag }}>
     {% endapply %}
 {% endblock %}
