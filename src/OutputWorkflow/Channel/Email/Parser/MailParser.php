@@ -22,12 +22,12 @@ use League\Flysystem\FilesystemOperator;
 use Pimcore\Mail;
 use Pimcore\Model\Document\Email;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 class MailParser
 {
     public function __construct(
-        protected EngineInterface $templating,
+        protected Environment $templating,
         protected FormValuesOutputApplierInterface $formValuesOutputApplier,
         protected PlaceholderParserInterface $placeholderParser,
         protected FilesystemOperator $formBuilderFilesStorage

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block form_builder_dynamicmultifile_fine_uploader_widget %}
-    {% apply spaceless %}
+    {% apply form_builder_spaceless %}
         <div {{ block('attributes') }}>
             <div class="qq-upload-container"></div>
             <div class="qq-uploader-wrapper" style="display:none;">
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block form_builder_dynamicmultifile_drop_zone_widget %}
-    {% apply spaceless %}
+    {% apply form_builder_spaceless %}
         <div {{ block('attributes') }}>
             <div class="dropzone-container"></div>
             <div class="dropzone-template" style="display: none;">

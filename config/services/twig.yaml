@@ -12,3 +12,7 @@ services:
     FormBuilderBundle\Twig\Extension\FlashMessageExtension:
         tags:
             - { name: twig.extension }
+
+    FormBuilderBundle\Twig\Extension\SpacelessExtension:
+        tags:
+            - { name: twig.extension }
